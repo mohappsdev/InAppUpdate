@@ -5,19 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.play.core.install.model.AppUpdateType;
+
 import mohapps.myproject.R;
+import mohapps.myproject.helper.Config;
 import mohapps.myproject.helper.DataLoader;
+import mohapps.myproject.helper.InAppUpdateHelper;
 
 import static mohapps.myproject.helper.Constants.IN_APP_UPDATE;
 
-public class MainActivity extends ParentMainActivity{
+public class MainActivity extends BaseActivity{
 
+    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getCacheUtilConfig());
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
     }
 
@@ -26,8 +32,10 @@ public class MainActivity extends ParentMainActivity{
     @Override
     protected void onResume() {
         super.onResume();
+        inAppUpdateHelper.handleInAppUpdate(this, AppUpdateType.FLEXIBLE, false);
+
+        //TODO: layout main is your root layout's id, customize button_in_app_update and place it in desired place in your layout
         inAppUpdateHelper.loadInAppUpdate(this, findViewById(R.id.layout_main), findViewById(R.id.button_in_app_update));
-        //TODO: layout main is your root layout id, customize button_in_app_update and place it in desired place in your layout
     }
 
     @Override
@@ -42,7 +50,6 @@ public class MainActivity extends ParentMainActivity{
             }
             if(resultCode== Activity.RESULT_OK){
                 DataLoader.deleteAppUpdateInfo();
-                //appUpdateInfo = null
                 inAppUpdateHelper.loadInAppUpdate(this, findViewById(R.id.layout_main), findViewById(R.id.button_in_app_update));
             }
 

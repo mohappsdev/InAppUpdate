@@ -2,11 +2,16 @@ package mohapps.myproject.activity;
 
 import android.os.Bundle;
 
+import com.google.android.play.core.install.model.AppUpdateType;
+
 import mohapps.myproject.R;
+import mohapps.myproject.helper.Config;
+import mohapps.myproject.helper.InAppUpdateHelper;
 
-public class ForceUpdateActivity extends ParentForceUpdateActivity{
+public class ForceUpdateActivity extends BaseActivity {
 
 
+    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getCacheUtilConfig());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,6 @@ public class ForceUpdateActivity extends ParentForceUpdateActivity{
     @Override
     protected void onResume() {
         super.onResume();
-
+        inAppUpdateHelper.handleInAppUpdate(this, AppUpdateType.IMMEDIATE, false);
     }
 }
