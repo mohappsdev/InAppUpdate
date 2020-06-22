@@ -1,4 +1,4 @@
-package mohapps.myproject.helper;
+package mohapps.inappupdate.helper;
 
 import java.util.ArrayList;
 import java.util.List;

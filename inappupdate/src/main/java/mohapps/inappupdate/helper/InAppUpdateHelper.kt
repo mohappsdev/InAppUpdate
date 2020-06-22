@@ -1,4 +1,4 @@
-package mohapps.myproject.helper
+package mohapps.inappupdate.helper
 
 import android.app.Activity
 import android.content.Context
@@ -15,11 +15,10 @@ import com.google.android.play.core.install.model.AppUpdateType.FLEXIBLE
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.InstallStatus.*
 import com.google.android.play.core.install.model.UpdateAvailability
-import mohapps.myproject.activity.ForceUpdateActivity
-import mohapps.myproject.helper.Constants.IN_APP_UPDATE
+import mohapps.inappupdate.helper.Constants.IN_APP_UPDATE
 import kotlin.math.pow
 
-class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrategyConfig?) {
+class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrategyConfig?, private var forceUpdateActivity: Activity) {
     private var appUpdateManager: AppUpdateManager? = null
 
     fun handleInAppUpdate(context: Context, appUpdateType: Int, launchedByUser: Boolean) {
@@ -54,7 +53,7 @@ class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrate
                             appUpdateManager?.startUpdateFlowForResult(appUpdateInfo, appUpdateType, context as Activity?, IN_APP_UPDATE)
                         } else
                             if (isForceUpdateNeeded(context, appUpdateInfo.availableVersionCode())) {
-                                context.startActivity(Intent(context, ForceUpdateActivity::class.java))
+                                context.startActivity(Intent(context, forceUpdateActivity::class.java))
                             }
                     }
                 }
@@ -67,8 +66,8 @@ class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrate
         }
     }
 
-    fun loadInAppUpdate(context: Context, layout_main: View?, button_in_app_update: View?) {
-        var appUpdateInfo: mohapps.myproject.helper.entity.AppUpdateInfo? = null
+    fun loadInAppUpdate(context: Context, button_in_app_update: View?) {
+        var appUpdateInfo: mohapps.inappupdate.entity.AppUpdateInfo? = null
         try {
             appUpdateInfo = DataLoader.sideloadAppUpdateInfo()
             if (appUpdateInfo != null
@@ -87,7 +86,7 @@ class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrate
             button_in_app_update?.visibility = View.GONE
         }
         if (appUpdateInfo?.installStatus == DOWNLOADED) {
-            SnackbarMaker.makeInAppUpdateSnackBar(context, layout_main, true, appUpdateManager)
+            appUpdateManager?.completeUpdate()
         }
     }
 

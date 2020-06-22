@@ -1,4 +1,4 @@
-package mohapps.myproject.helper;
+package mohapps.inappupdate.helper;
 
 public class ForceUpdateStrategy {
     public static final int LAST_DIGIT = 1;

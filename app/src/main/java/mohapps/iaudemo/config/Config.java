@@ -1,11 +1,12 @@
-package mohapps.myproject.helper;
+package mohapps.iaudemo.config;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Constants {
-    public final static int IN_APP_UPDATE = 78546;
-    public final static String APP_UPDATE_INFO_CACHE_KEY="APP_UPDATE_INFO_CACHE_KEY";
+import mohapps.inappupdate.helper.ForceUpdateStrategyConfig;
+
+public class Config {
+
 
     public static List<Integer> FORCE_UPDATE_STRATEGY_LIST() {
         List<Integer> FORCE_UPDATE_STRATEGY_LIST = new ArrayList<>();
@@ -26,4 +27,14 @@ public class Constants {
     //example: updates where number of digits increased such as 9 to 10, 99 to 100 will be forced to users
 
     public static Integer FORCE_UPDATE_MAJOR_LENGTH = -1;
+
+
+
+    public static ForceUpdateStrategyConfig getCacheUtilConfig(){
+        return ForceUpdateStrategyConfig.builder()
+                .setForceUpdateStrategyList(FORCE_UPDATE_STRATEGY_LIST())
+                .setEndsWith(FORCE_UPDATE_LAST_DIGIT)
+                .setMajorLength(FORCE_UPDATE_MAJOR_LENGTH)
+                .build();
+    }
 }

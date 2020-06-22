@@ -1,17 +1,18 @@
-package mohapps.myproject.activity;
+package mohapps.iaudemo.activity;
 
 import android.os.Bundle;
 
 import com.google.android.play.core.install.model.AppUpdateType;
 
-import mohapps.myproject.R;
-import mohapps.myproject.helper.Config;
-import mohapps.myproject.helper.InAppUpdateHelper;
+
+import mohapps.inappupdate.helper.InAppUpdateHelper;
+import mohapps.iaudemo.R;
+import mohapps.iaudemo.config.Config;
 
 public class ForceUpdateActivity extends BaseActivity {
 
 
-    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getCacheUtilConfig());
+    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getCacheUtilConfig(), new ForceUpdateActivity());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

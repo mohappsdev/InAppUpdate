@@ -1,4 +1,4 @@
-package mohapps.myproject.activity;
+package mohapps.iaudemo.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,16 +7,18 @@ import android.util.Log;
 
 import com.google.android.play.core.install.model.AppUpdateType;
 
-import mohapps.myproject.R;
-import mohapps.myproject.helper.Config;
-import mohapps.myproject.helper.DataLoader;
-import mohapps.myproject.helper.InAppUpdateHelper;
 
-import static mohapps.myproject.helper.Constants.IN_APP_UPDATE;
+import mohapps.inappupdate.helper.DataLoader;
+import mohapps.inappupdate.helper.InAppUpdateHelper;
+import mohapps.iaudemo.R;
+import mohapps.iaudemo.config.Config;
+
+import static mohapps.inappupdate.helper.Constants.IN_APP_UPDATE;
+
 
 public class MainActivity extends BaseActivity{
 
-    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getCacheUtilConfig());
+    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getCacheUtilConfig(), new ForceUpdateActivity());
 
 
     @Override
@@ -34,8 +36,8 @@ public class MainActivity extends BaseActivity{
         super.onResume();
         inAppUpdateHelper.handleInAppUpdate(this, AppUpdateType.FLEXIBLE, false);
 
-        //TODO: layout main is your root layout's id, customize button_in_app_update and place it in desired place in your layout
-        inAppUpdateHelper.loadInAppUpdate(this, findViewById(R.id.layout_main), findViewById(R.id.button_in_app_update));
+        //TODO: customize button_in_app_update (visibility = GONE) and place it in desired place in your layout
+        inAppUpdateHelper.loadInAppUpdate(this, findViewById(R.id.button_in_app_update));
     }
 
     @Override
@@ -50,7 +52,7 @@ public class MainActivity extends BaseActivity{
             }
             if(resultCode== Activity.RESULT_OK){
                 DataLoader.deleteAppUpdateInfo();
-                inAppUpdateHelper.loadInAppUpdate(this, findViewById(R.id.layout_main), findViewById(R.id.button_in_app_update));
+                inAppUpdateHelper.loadInAppUpdate(this, findViewById(R.id.button_in_app_update));
             }
 
         }

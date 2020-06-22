@@ -1,4 +1,4 @@
-package mohapps.myproject.activity;
+package mohapps.iaudemo.activity;
 
 import android.os.Bundle;
 
