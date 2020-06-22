@@ -22,15 +22,17 @@
    #### 3. Changes in backend where outdated versions of your app are affected
 
 ## FORCE UPDATE STRATEGIES
-   ### 1. When your new update's version ends with a specific number (FORCE_UPDATE_LAST_DIGIT)
-   #### To use this strategy you have to specify a positive number (no limit on digits)
+   ### 1. When your new update's version ends with a specific number
+   #### To use this strategy you have to specify a positive number for FORCE_UPDATE_LAST_DIGIT (no limit on digits) and uncomment this line
+   FORCE_UPDATE_STRATEGY_LIST.add(ForceUpdateStrategy.LAST_DIGIT);
    #### example: If you set it as 4, updates with version code of *4 such as 4, 14, 24, 34, ..., 104, 114, ... will be forced to users
    #### example: If you set it as 23, updates with version code of *23 such as 23, 123, 223, 323, ..., 1023, 1123, ... will be forced to users
    #### and so on...
    #### this strategy allows you to force update to all your users, all you have to do is set your new update's version number as your specified number
 
-   ### 2. When your new update's version number is a major change from installed version(FORCE_UPDATE_MAJOR_LENGTH)
-   #### To use this strategy you have to specify a positive number (no limit on digits)
+   ### 2. When your new update's version number is a major change from installed version
+   #### To use this strategy you have to specify a positive number for FORCE_UPDATE_MAJOR_LENGTH (no limit on digits) and uncomment this line
+   FORCE_UPDATE_STRATEGY_LIST.add(ForceUpdateStrategy.MAJOR_CHANGE);
    #### example: If you set it as 1, updates where 1 digit from left chenged such as 1 to 2, 12 to 22, 100658 to 200033 will be forced to users
    #### example: If you set it as 2, updates where 2 digits from left chenged such as 11 to 22, 120 to 230, 100658 to 210033 will be forced to users
    #### and so on...
