@@ -28,7 +28,7 @@
    #### example: If you set it as 4, updates with version code of *4 such as 4, 14, 24, 34, ..., 104, 114, ... will be forced to users
    #### example: If you set it as 23, updates with version code of *23 such as 23, 123, 223, 323, ..., 1023, 1123, ... will be forced to users
    #### and so on...
-   #### this strategy allows you to force update to all your users, all you have to do is set your new update's version number as your specified number
+   #### this strategy allows you to force update to all your users, all you have to do is make your new update's version number end with your specified number
 
    ### 2. When your new update's version number is a major change from installed version
    #### To use this strategy you have to specify a positive number for FORCE_UPDATE_MAJOR_LENGTH (no limit on digits) and uncomment this line
