@@ -30,7 +30,7 @@ public class Config {
 
 
 
-    public static ForceUpdateStrategyConfig getCacheUtilConfig(){
+    public static ForceUpdateStrategyConfig getForceUpdateStrategyConfig(){
         return ForceUpdateStrategyConfig.builder()
                 .setForceUpdateStrategyList(FORCE_UPDATE_STRATEGY_LIST())
                 .setEndsWith(FORCE_UPDATE_LAST_DIGIT)

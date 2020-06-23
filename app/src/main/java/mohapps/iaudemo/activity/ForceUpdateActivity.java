@@ -12,7 +12,7 @@ import mohapps.iaudemo.config.Config;
 public class ForceUpdateActivity extends BaseActivity {
 
 
-    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getCacheUtilConfig(), new ForceUpdateActivity());
+    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getForceUpdateStrategyConfig(), new ForceUpdateActivity());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
