@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/mohappsdev/InAppUpdate.svg)](https://jitpack.io/#mohappsdev/InAppUpdate)
 # Simple implementation of Play Store's InAppUpdate
 
 ## HOW TO USE
