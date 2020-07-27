@@ -1,8 +1,25 @@
+[![](https://jitpack.io/v/mohappsdev/InAppUpdate.svg)](https://jitpack.io/#mohappsdev/InAppUpdate)
 # Simple implementation of Play Store's InAppUpdate
 
 ## HOW TO USE
 
-   #### Add the library to your project (will be added to repositories soon)
+
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+Add the dependency
+
+	dependencies {
+	        implementation 'com.github.mohappsdev:InAppUpdate:v1.0.0'
+	}
+
+
    #### Create [ForceUpdateActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/ForceUpdateActivity.java)
    #### Modify your [MainActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/MainActivity.java)
    #### Create [BaseActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/BaseActivity.java)
@@ -39,5 +56,23 @@
    #### Also if your version's length has increased update will be forced
    #### example: updates where version's length increased such as 9 to 10, 99 to 100 will be forced to users
    #### this strategy allows you to prevent your users from using a very outdated version
+   
+   ## LICENSE
+
+    Copyright 2020 mohapps
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+
 
    
