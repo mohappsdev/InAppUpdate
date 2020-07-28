@@ -19,10 +19,7 @@ public class BaseActivity extends AppCompatActivity {
                 .allowEncrypt(false)
                 .build());
     }
-    @Override
-    protected void onResume(){
-        super.onResume();
-    }
+
 
 
 }

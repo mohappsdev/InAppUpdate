@@ -18,7 +18,7 @@ import com.google.android.play.core.install.model.UpdateAvailability
 import mohapps.inappupdate.helper.Constants.IN_APP_UPDATE
 import kotlin.math.pow
 
-class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrategyConfig?, private var forceUpdateActivity: Activity) {
+class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrategyConfig?, private var forceUpdateActivity: Intent) {
     private var appUpdateManager: AppUpdateManager? = null
 
     fun handleInAppUpdate(context: Context, appUpdateType: Int, launchedByUser: Boolean) {

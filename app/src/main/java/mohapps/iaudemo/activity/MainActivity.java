@@ -3,6 +3,7 @@ package mohapps.iaudemo.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.google.android.play.core.install.model.AppUpdateType;
@@ -18,7 +19,7 @@ import static mohapps.inappupdate.helper.Constants.IN_APP_UPDATE;
 
 public class MainActivity extends BaseActivity{
 
-    InAppUpdateHelper inAppUpdateHelper = new InAppUpdateHelper(Config.getForceUpdateStrategyConfig(), new ForceUpdateActivity());
+    InAppUpdateHelper inAppUpdateHelper = null;
 
 
     @Override
@@ -34,6 +35,9 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onResume() {
         super.onResume();
+        if(inAppUpdateHelper==null){
+            inAppUpdateHelper = new InAppUpdateHelper(Config.getForceUpdateStrategyConfig(), new Intent(this, ForceUpdateActivity.class));
+        }
         inAppUpdateHelper.handleInAppUpdate(this, AppUpdateType.FLEXIBLE, false);
 
         //TODO: customize button_in_app_update (visibility = GONE) and place it in desired place in your layout
@@ -51,8 +55,8 @@ public class MainActivity extends BaseActivity{
                 // you can request to start the update again.
             }
             if(resultCode== Activity.RESULT_OK){
-                DataLoader.deleteAppUpdateInfo();
                 inAppUpdateHelper.loadInAppUpdate(this, findViewById(R.id.button_in_app_update));
+                new Handler().postDelayed(DataLoader::deleteAppUpdateInfo, 1000);
             }
 
         }
