@@ -6,11 +6,12 @@ import android.os.Bundle;
 import com.google.android.play.core.install.model.AppUpdateType;
 
 
+import androidx.appcompat.app.AppCompatActivity;
 import mohapps.inappupdate.helper.InAppUpdateHelper;
 import mohapps.iaudemo.R;
 import mohapps.iaudemo.config.Config;
 
-public class ForceUpdateActivity extends BaseActivity {
+public class ForceUpdateActivity extends AppCompatActivity {
 
 
     InAppUpdateHelper inAppUpdateHelper = null;

@@ -1,25 +1,22 @@
-package mohapps.iaudemo.activity;
+package mohapps.iaudemo;
 
-import android.os.Bundle;
+import android.app.Application;
 
 import com.haohaohu.cachemanage.CacheUtil;
 import com.haohaohu.cachemanage.CacheUtilConfig;
 import com.haohaohu.cachemanage.strategy.KeyStoreEncryptStrategy;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-public class BaseActivity extends AppCompatActivity {
 
+public class App extends Application {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate() {
+        super.onCreate();
         CacheUtil.init(CacheUtilConfig.builder(this)
                 .setIEncryptStrategy(new KeyStoreEncryptStrategy(this, "cacheUtil"))
                 .allowMemoryCache(true)
                 .allowEncrypt(false)
                 .build());
     }
-
-
 
 }

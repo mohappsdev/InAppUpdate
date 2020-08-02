@@ -9,6 +9,7 @@ import android.util.Log;
 import com.google.android.play.core.install.model.AppUpdateType;
 
 
+import androidx.appcompat.app.AppCompatActivity;
 import mohapps.inappupdate.helper.DataLoader;
 import mohapps.inappupdate.helper.InAppUpdateHelper;
 import mohapps.iaudemo.R;
@@ -17,7 +18,7 @@ import mohapps.iaudemo.config.Config;
 import static mohapps.inappupdate.helper.Constants.IN_APP_UPDATE;
 
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends AppCompatActivity {
 
     InAppUpdateHelper inAppUpdateHelper = null;
 

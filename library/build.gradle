@@ -28,7 +28,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.github.ronghao:CacheManage:1.3.5'
+    implementation 'com.github.mohappsdev:CacheManage:v1.4.0'
     implementation 'com.google.android.play:core:1.7.3'
     implementation 'androidx.core:core-ktx:1.3.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
