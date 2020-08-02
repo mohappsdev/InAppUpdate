@@ -22,8 +22,7 @@ Add the dependency
 
    #### Create [ForceUpdateActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/ForceUpdateActivity.java)
    #### Modify your [MainActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/MainActivity.java)
-   #### Create [BaseActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/BaseActivity.java)
-   #### Both activities extend BaseActivity
+   #### Modify your [App](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/App.java)
    #### Add button_in_app_update (visibility = GONE) in your activity_main
    #### Specify your settings in [Config](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/config/Config.java)
 
