@@ -11,7 +11,6 @@ import androidx.core.content.pm.PackageInfoCompat
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.install.model.AppUpdateType.FLEXIBLE
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.InstallStatus.*
 import com.google.android.play.core.install.model.UpdateAvailability
@@ -21,20 +20,18 @@ import kotlin.math.pow
 class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrategyConfig?, private var forceUpdateActivity: Intent) {
     private var appUpdateManager: AppUpdateManager? = null
 
-    fun handleInAppUpdate(context: Context, appUpdateType: Int, launchedByUser: Boolean) {
+    fun handleInAppUpdate(context: Context, appUpdateType: Int, launchedByUser: Boolean, button_in_app_update: View?) {
 
         if (appUpdateManager == null) {
             appUpdateManager = AppUpdateManagerFactory.create(context)
         }
+        button_in_app_update?.visibility = View.GONE
 
         appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
 
-            DataLoader.saveAppUpdateInfo(appUpdateInfo.updateAvailability(),
-                    appUpdateInfo.availableVersionCode(),
-                    appUpdateInfo.isUpdateTypeAllowed(IMMEDIATE),
-                    appUpdateInfo.isUpdateTypeAllowed(FLEXIBLE),
-                    appUpdateInfo.packageName(),
-                    appUpdateInfo.installStatus())
+            if (appUpdateInfo.installStatus() == DOWNLOADED) {
+                appUpdateManager?.completeUpdate()
+            }
 
             when (appUpdateInfo.updateAvailability()) {
 
@@ -48,12 +45,13 @@ class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrate
                 }
 
                 UpdateAvailability.UPDATE_AVAILABLE -> {
-                    if (appUpdateInfo.isUpdateTypeAllowed(appUpdateType) && appUpdateInfo.installStatus() != DOWNLOADED && appUpdateInfo.installStatus() != DOWNLOADING) {
+                    if (appUpdateInfo.isUpdateTypeAllowed(appUpdateType) && appUpdateInfo.installStatus() != DOWNLOADED && appUpdateInfo.installStatus() != DOWNLOADING && appUpdateInfo.installStatus() != PENDING) {
+                        button_in_app_update?.visibility = View.VISIBLE
                         if (appUpdateType == IMMEDIATE || launchedByUser) {
                             appUpdateManager?.startUpdateFlowForResult(appUpdateInfo, appUpdateType, context as Activity?, IN_APP_UPDATE)
                         } else
                             if (isForceUpdateNeeded(context, appUpdateInfo.availableVersionCode())) {
-                                context.startActivity(Intent(context, forceUpdateActivity::class.java))
+                                context.startActivity(forceUpdateActivity)
                             }
                     }
                 }
@@ -63,30 +61,6 @@ class InAppUpdateHelper(private var forceUpdateStrategyConfig: ForceUpdateStrate
                 }
             }
 
-        }
-    }
-
-    fun loadInAppUpdate(context: Context, button_in_app_update: View?) {
-        var appUpdateInfo: mohapps.inappupdate.entity.AppUpdateInfo? = null
-        try {
-            appUpdateInfo = DataLoader.sideloadAppUpdateInfo()
-            if (appUpdateInfo != null
-                    && appUpdateInfo.availableVersionCode > getInstalledVersionCode(context)
-                    && appUpdateInfo.installStatus != DOWNLOADED && appUpdateInfo.installStatus != DOWNLOADING && appUpdateInfo.installStatus != PENDING) {
-
-
-                button_in_app_update?.visibility = View.VISIBLE
-                button_in_app_update?.setOnClickListener {
-                    handleInAppUpdate(context, FLEXIBLE, true)
-                }
-            } else {
-                button_in_app_update?.visibility = View.GONE
-            }
-        } catch (ignore: Exception) {
-            button_in_app_update?.visibility = View.GONE
-        }
-        if (appUpdateInfo?.installStatus == DOWNLOADED) {
-            appUpdateManager?.completeUpdate()
         }
     }
 

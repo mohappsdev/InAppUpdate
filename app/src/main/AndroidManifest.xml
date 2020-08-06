@@ -4,7 +4,6 @@
     package="mohapps.iaudemo">
 
     <application
-        android:name=".App"
         tools:replace="android:allowBackup"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"

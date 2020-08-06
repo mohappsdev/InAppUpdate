@@ -33,6 +33,6 @@ public class ForceUpdateActivity extends AppCompatActivity {
         if(inAppUpdateHelper==null){
             inAppUpdateHelper = new InAppUpdateHelper(Config.getForceUpdateStrategyConfig(), new Intent(this, ForceUpdateActivity.class));
         }
-        inAppUpdateHelper.handleInAppUpdate(this, AppUpdateType.IMMEDIATE, false);
+        inAppUpdateHelper.handleInAppUpdate(this, AppUpdateType.IMMEDIATE, false, null);
     }
 }

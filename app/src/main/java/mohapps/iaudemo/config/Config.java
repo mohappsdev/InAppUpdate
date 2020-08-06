@@ -10,11 +10,14 @@ public class Config {
 
     public static List<Integer> FORCE_UPDATE_STRATEGY_LIST() {
         List<Integer> FORCE_UPDATE_STRATEGY_LIST = new ArrayList<>();
-        //TODO: Add force update strategies here
+        //TODO: Add or remove force update strategies here (uncomment to add)
         //FORCE_UPDATE_STRATEGY_LIST.add(ForceUpdateStrategy.LAST_DIGIT);
         //FORCE_UPDATE_STRATEGY_LIST.add(ForceUpdateStrategy.MAJOR_CHANGE);
         return FORCE_UPDATE_STRATEGY_LIST;
     }
+
+    //TODO: Don't forget to modify corresponding value for each strategy below
+
     //To use ForceUpdateStrategy.LAST_DIGIT you have to specify a positive number (no limit on digits)
     //example: If you set it as 4, updates with version code of *4 such as 4, 14, 24, 34, ..., 104, 114, ... will be forced to users
     //example: If you set it as 23, updates with version code of *23 such as 23, 123, 223, 323, ..., 1023, 1123, ... will be forced to users

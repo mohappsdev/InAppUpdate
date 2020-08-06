@@ -16,15 +16,14 @@ Add it in your root build.gradle at the end of repositories:
 Add the dependency
 
 	dependencies {
-	        implementation 'com.github.mohappsdev:InAppUpdate:v1.0.5'
+	        implementation 'com.github.mohappsdev:InAppUpdate:v1.1.0'
 	}
 
 
    #### Create [ForceUpdateActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/ForceUpdateActivity.java)
    #### Modify your [MainActivity](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/activity/MainActivity.java)
-   #### Modify your [App](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/App.java)
    #### Add button_in_app_update (visibility = GONE) in your activity_main
-   #### Specify your settings in [Config](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/config/Config.java)
+   #### IMPORTANT: Specify your settings in [Config](https://github.com/mohappsdev/InAppUpdate/blob/master/app/src/main/java/mohapps/iaudemo/config/Config.java)
 
 ## HOW IT WORKS
    #### button_in_app_update will be shown on main activity when there is an update available and when user taps it update dialog will be shown (Flexible update)
